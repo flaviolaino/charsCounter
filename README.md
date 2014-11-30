@@ -4,8 +4,8 @@ charsCounter
 Character counter and limit jQuery plugin
 
 
-## Use
-```
+## Usage
+```js
 $('.mySelector').charsCounter();
 
 $('.mySelector').charsCounter({limit_max: 100});
