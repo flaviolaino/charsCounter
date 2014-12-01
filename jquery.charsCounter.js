@@ -1,5 +1,5 @@
 /*
- * Character counter and limit jQuery plugin v1.0
+ * Character counter and limit jQuery plugin v1.1
  *
  * by Flavio Laino
  */
