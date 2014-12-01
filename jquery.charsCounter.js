@@ -1,5 +1,5 @@
 /*
- * Character counter and limit jQuery plugin v1.1
+ * Character counter and limit jQuery plugin v1.0
  *
  * by Flavio Laino
  */
@@ -21,27 +21,18 @@
 				, '</span>'
 				, '</span>'
 				, '</div>'
-			],
-			css : {
-				position : 'absolute' ,
-				right: '4px' ,
-				bottom: '1px' ,
-				opacity: '.6' ,
-				fontSize : '10px' ,
-			}
+			]
 		}, options);
 
 		return this.each(function(i, el) {
 			var $el = $(el),
 			    $template = $(options.template.join(''));
 
-			$el.off('keydown blur paste').parent().find('.charscounter-container').remove();
 			$el.after($template);
 
 			var $counter_container = $el.parent()
 					.css('position', 'relative')
-					.find('.charscounter-container')
-					.css(options.css);
+					.find('.charscounter-container');
 
 			if (options.limit_enable) {
 				$counter_container
@@ -51,27 +42,19 @@
 					.text(options.limit_max);
 			}
 
-			$el.on('keydown blur paste', function(e) {
+			$el.on('keyup blur paste', function() {
 				if (options.limit_enable) {
 					var txt = get_txt();
 
-					if (txt.length == options.limit_max) {
-						if(e.which != 8  && e.which != 9 && e.which != 35 && e.which != 36 && e.which != 37 && e.which != 38 && e.which != 39 && e.which != 40 && e.which != 46){
-							e.preventDefault();
-						}
-					}
-					
 					if (txt.length > options.limit_max) {
 						if (el.nodeName == 'INPUT' || el.nodeName == 'TEXTAREA') {
-							$el.val(txt.substring(0, options.limit_max - 1));
+							$el.val(txt.substring(0, options.limit_max));
 						} else {
-							$el.text(txt.substring(0, options.limit_max - 1));
+							$el.text(txt.substring(0, options.limit_max));
 						}
 					}
 				}
-			});
-			
-			$el.on('keydown keyup blur paste change', function() {
+
 				set_count_value();
 			});
 
